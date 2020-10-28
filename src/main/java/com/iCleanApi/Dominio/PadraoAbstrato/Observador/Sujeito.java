@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public abstract class Sujeito {
-	List observadores = new ArrayList<>();
+	List<Observador> observadores = new ArrayList<>();
 	
 	public void adicionar(Observador o) {
 		observadores.add(o);
@@ -18,7 +18,7 @@ public abstract class Sujeito {
 	}
 
 	public void notificar() {
-		Iterator it = observadores.iterator();
+		Iterator<Observador> it = observadores.iterator();
 		while (it.hasNext()) {
 			Observador o = (Observador) it.next();
 			o.atualizar(this);
