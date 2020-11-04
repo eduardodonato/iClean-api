@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.iCleanApi.Dominio.PadraoAbstrato.Observador.Observador;
-import com.iCleanApi.Dominio.PadraoAbstrato.Observador.Sujeito;
 
 @Entity
 public class Usuario implements Observador {
@@ -72,8 +71,8 @@ public class Usuario implements Observador {
 	}
 
 	@Override
-	public void atualizar(Sujeito o) {
-		// TODO Auto-generated method stub
+	public void atualizar() {
+		System.out.println("Usuario Notificado :" + getNome());
 			
 	}
 

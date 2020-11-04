@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
-
 public abstract class Sujeito {
-	List<Observador> observadores = new ArrayList<>();
+	private List<Observador> observadores = new ArrayList<>();
 	
-	public void adicionar(Observador o) {
+	public void adicionar(Observador o) throws Exception {
 		observadores.add(o);
 	}
 
@@ -21,8 +19,16 @@ public abstract class Sujeito {
 		Iterator<Observador> it = observadores.iterator();
 		while (it.hasNext()) {
 			Observador o = (Observador) it.next();
-			o.atualizar(this);
+			o.atualizar();
 		}
+	}
+	
+	public List<Observador> getObservadores () {
+		return this.observadores;
+	}
+	
+	protected void setObservadores (List<Observador> observadores) {
+		this.observadores = observadores;
 	}
 
 }
