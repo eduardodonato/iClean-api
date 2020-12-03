@@ -1,17 +1,13 @@
 package com.iCleanApi.Dominio.Entidade;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.iCleanApi.Dominio.PadraoAbstrato.Observador.Observador;
-
 @Entity
-public class Usuario implements Observador {
+public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,17 +16,23 @@ public class Usuario implements Observador {
 	@Column(name = "Nome")
 	private String nome;
 	
-	@Column(name = "Email")
+	@Column(name = "Email", unique = true)
 	private String email;
 	
 	@Column(name = "Senha")
 	private String senha;
 	
-	@Column(name = "DataProximaLimpeza")
-	private LocalDate dataProximaLimpeza;
+	@Column(name = "Token")
+	private String tokenExpo;
 	
-	private Boolean Limpezaexecutada;
-		
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -55,25 +57,12 @@ public class Usuario implements Observador {
 		this.senha = senha;
 	}
 
-	public LocalDate getDataProximaLimpeza() {
-		return dataProximaLimpeza;
+	public String getTokenExpo() {
+		return tokenExpo;
 	}
 
-	public void setDataProximaLimpeza(LocalDate dataProximaLimpeza) {
-		this.dataProximaLimpeza = dataProximaLimpeza;
-	}
-	public Boolean getLimpezaexecutada() {
-		return Limpezaexecutada;
-	}
-
-	public void setLimpezaexecutada(Boolean limpezaexecutada) {
-		Limpezaexecutada = limpezaexecutada;
-	}
-
-	@Override
-	public void atualizar() {
-		System.out.println("Usuario Notificado :" + getNome());
-			
+	public void setTokenExpo(String tokenExpo) {
+		this.tokenExpo = tokenExpo;
 	}
 
 }

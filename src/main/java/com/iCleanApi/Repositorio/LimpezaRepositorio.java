@@ -1,14 +1,16 @@
 package com.iCleanApi.Repositorio;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.iCleanApi.Dominio.Entidade.Limpeza;
 import com.iCleanApi.Dominio.Entidade.Usuario;
 
 @Repository
-public interface UsuarioRepositorio extends JpaRepository<Usuario, Long> {
+public interface LimpezaRepositorio extends JpaRepository<Limpeza, Long> {
 	
-	public Optional<Usuario> findByEmail (String email);
+	public List<Limpeza> findByUsuario (Usuario usuario);
+
 }

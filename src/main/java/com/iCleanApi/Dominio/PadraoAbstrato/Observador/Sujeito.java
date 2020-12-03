@@ -1,34 +1,31 @@
 package com.iCleanApi.Dominio.PadraoAbstrato.Observador;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+
+import com.iCleanApi.Dominio.MapaObservadores;
 
 public abstract class Sujeito {
-	private List<Observador> observadores = new ArrayList<>();
+	private MapaObservadores observadores = new MapaObservadores();
 	
-	public void adicionar(Observador o) throws Exception {
+	public void adicionar(Observador o) {
 		observadores.add(o);
 	}
 
-	public void remover(Observador o) {
+	public void remover(Observador o) throws Exception {
 		observadores.remove(o);
 	}
 
 	public void notificar() {
-		Iterator<Observador> it = observadores.iterator();
+		Iterator<Object> it = observadores.iterator();
 		while (it.hasNext()) {
 			Observador o = (Observador) it.next();
 			o.atualizar();
 		}
+		observadores = new MapaObservadores();
 	}
 	
-	public List<Observador> getObservadores () {
+	public MapaObservadores getObservadores () {
 		return this.observadores;
-	}
-	
-	protected void setObservadores (List<Observador> observadores) {
-		this.observadores = observadores;
 	}
 
 }
