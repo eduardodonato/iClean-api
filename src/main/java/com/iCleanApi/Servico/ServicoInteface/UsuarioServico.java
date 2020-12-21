@@ -1,7 +1,6 @@
 package com.iCleanApi.Servico.ServicoInteface;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -12,9 +11,11 @@ public interface UsuarioServico {
 	
 	List<Usuario> listarTodos ();
 	
+	List<Usuario> listarTodosUsuariosDisponiveis ();
+	
 	Usuario criarUsuario (UsuarioDTO dto);
 	
-	Optional<Usuario> encontrarPorId (Long usuarioId);
+	Usuario encontrarPorId (Long usuarioId);
 
 	Usuario login(@Valid UsuarioDTO emailSenha) throws Exception;
 	

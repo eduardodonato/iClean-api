@@ -15,6 +15,14 @@ import com.iCleanApi.Dominio.PadraoAbstrato.Clonavel;
 
 @Entity
 public class Limpeza implements Clonavel {
+	
+	public Object clone () {
+		Limpeza limpezaClone = new Limpeza();
+		limpezaClone.dataProximaLimpeza = this.dataProximaLimpeza;
+		limpezaClone.frequencia = this.frequencia;
+		limpezaClone.usuario = this.usuario;
+		return limpezaClone;
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -62,13 +70,6 @@ public class Limpeza implements Clonavel {
 		this.usuario = usuario;
 	}
 	
-	public Object clone () {
-		Limpeza limpezaClone = new Limpeza();
-		limpezaClone.dataProximaLimpeza = this.dataProximaLimpeza;
-	    limpezaClone.frequencia = this.frequencia;
-	    limpezaClone.usuario = this.usuario;
-	    return limpezaClone;
-	}
 	
 	public LocalDate novaDataLimpeza () {
 		switch (frequencia) {

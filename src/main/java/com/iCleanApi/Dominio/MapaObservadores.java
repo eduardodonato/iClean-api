@@ -11,6 +11,11 @@ import com.iCleanApi.Dominio.PadraoAbstrato.Observador.Observador;
 public class MapaObservadores implements Iterable<Object> {
 	private Map<Long ,List<Observador>> mapObservadores;
 	
+	@Override
+	public Iterator<Object> iterator() {
+		return new ObservadorIterator(getObservadores());
+	}
+	
 	public MapaObservadores () {
 		mapObservadores = new HashMap<>();
 	}
@@ -37,10 +42,6 @@ public class MapaObservadores implements Iterable<Object> {
 		} return listaResultado;
 	}
 
-	@Override
-	public Iterator<Object> iterator() {
-		return new ObservadorIterator(getObservadores());
-	}
 	
 	public void reset () {
 		mapObservadores = new HashMap<>();

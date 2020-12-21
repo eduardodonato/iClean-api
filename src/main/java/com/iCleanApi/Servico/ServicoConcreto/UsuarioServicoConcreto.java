@@ -1,6 +1,5 @@
 package com.iCleanApi.Servico.ServicoConcreto;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.iCleanApi.Dominio.DTO.NovaLimpezaDTO;
 import com.iCleanApi.Dominio.DTO.UsuarioDTO;
 import com.iCleanApi.Dominio.Entidade.Limpeza;
 import com.iCleanApi.Dominio.Entidade.Usuario;
-import com.iCleanApi.Dominio.Enum.Frequencia;
 import com.iCleanApi.Dominio.PadraoAbstrato.Fabrica.FabricaUsuario;
 import com.iCleanApi.Repositorio.UsuarioRepositorio;
 import com.iCleanApi.Servico.FabricaConcreto.FabricaUsuarioConcreto;
@@ -41,7 +38,6 @@ public class UsuarioServicoConcreto implements UsuarioServico {
 		validarUsuarioUnico(dto.getEmail());
 		Usuario usuario = fabricaUsuario.criaUsuario(dto);
 		Usuario usuarioSalvo = repositorio.save(usuario);
-		criarPrimeiraLimpeza(usuarioSalvo);
 		return usuarioSalvo;
 		
 	}
@@ -52,17 +48,11 @@ public class UsuarioServicoConcreto implements UsuarioServico {
 		
 	}
 
-	private void criarPrimeiraLimpeza(Usuario usuarioSalvo) {
-		NovaLimpezaDTO primeiraLimpeza = new NovaLimpezaDTO();
-		primeiraLimpeza.setDataProximaLimpeza(LocalDate.now());
-		primeiraLimpeza.setFrequencia(Frequencia.semFrequencia);
-		primeiraLimpeza.setUsuarioId(usuarioSalvo.getId());
-		limpezaServico.registrarLimpeza(primeiraLimpeza);
-	}
-
 	@Override
-	public Optional<Usuario> encontrarPorId(Long usuarioId) {
-		return repositorio.findById(usuarioId);
+	public Usuario encontrarPorId(Long usuarioId) {
+		Optional<Usuario> usuarioEncontrado = repositorio.findById(usuarioId);
+		if (usuarioEncontrado.isEmpty()) throw new RuntimeException("Usuario não encontrado");
+		return usuarioEncontrado.get();
 	}
 
 	@Override
@@ -80,6 +70,11 @@ public class UsuarioServicoConcreto implements UsuarioServico {
 			limpezaServico.excluirLimpeza(limpeza.getId());
 		}
 		repositorio.deleteById(usuarioId);
+	}
+
+	@Override
+	public List<Usuario> listarTodosUsuariosDisponiveis() {
+		return repositorio.listarUsuarioDisponivies();
 	}
 	
 	

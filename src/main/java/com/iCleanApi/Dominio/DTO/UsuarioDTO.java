@@ -12,8 +12,9 @@ public class UsuarioDTO {
 	@NotNull
 	private String senha;
 	
-	@NotNull
 	private String token;
+	
+	private Boolean isAdmin;
 	
 	public String getNome() {
 		return nome;
@@ -38,5 +39,11 @@ public class UsuarioDTO {
 	}
 	public void setToken(String token) {
 		this.token = token;
+	}
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 }

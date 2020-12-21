@@ -12,6 +12,7 @@ public class FabricaUsuarioConcreto implements FabricaUsuario {
 		usuario.setNome(dto.getNome());
 		usuario.setSenha(dto.getSenha());
 		usuario.setTokenExpo(dto.getToken());
+		usuario.setIsAdmin(dto.getIsAdmin() == null ? false : dto.getIsAdmin());
 		return usuario;
 	}
 

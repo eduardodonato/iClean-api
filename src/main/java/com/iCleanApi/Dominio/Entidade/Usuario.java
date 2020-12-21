@@ -25,6 +25,9 @@ public class Usuario {
 	@Column(name = "Token")
 	private String tokenExpo;
 	
+	@Column(name = "isAdmin")
+	private Boolean isAdmin;
+	
 	public Long getId() {
 		return id;
 	}
@@ -63,6 +66,14 @@ public class Usuario {
 
 	public void setTokenExpo(String tokenExpo) {
 		this.tokenExpo = tokenExpo;
+	}
+
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
 }

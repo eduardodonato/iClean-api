@@ -6,7 +6,7 @@ import com.iCleanApi.Dominio.DTO.UsuarioLimpezaDTO;
 import com.iCleanApi.Dominio.Entidade.Limpeza;
 import com.iCleanApi.Dominio.PadraoAbstrato.Observador.Sujeito;
 
-public class LimpezaSujeito extends Sujeito {
+public class RotinaSujeito extends Sujeito {
 	
 	public void adicionarUsuarioLimpeza (Limpeza limpeza) {
 		if (deveAdicionarLimpeza(limpeza)) adicionar(criaUsuarioLimpeza(limpeza));
